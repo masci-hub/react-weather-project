@@ -15,7 +15,11 @@ export default function Footer() {
           GitHub
         </a>
         , and hosted on{" "}
-        <a href="https://www.netlify.com/" target="_blank" rel="noreferrer">
+        <a
+          href="https://masci-react-weather-project.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Netlify
         </a>
         .
