@@ -5,7 +5,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <div className="Footer">
-      <p>
+      <p className="text-center opacity-75 mt-5 mb-0">
         This project was coded by{" "}
         <a href="https://github.com/masci-hub" target="_blank" rel="noreferrer">
           Martina Scibilia
@@ -26,7 +26,6 @@ export default function Footer() {
         >
           Netlify
         </a>
-        .
       </p>
     </div>
   );

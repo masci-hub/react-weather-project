@@ -1,0 +1,26 @@
+.Weather .weatherData {
+  border-top: 1px solid #dadde1;
+  border-bottom: 1px solid #dadde1;
+  padding: 60px 0;
+}
+
+.Weather ul {
+  list-style: none;
+}
+
+.Weather .temperatureIcon {
+  height: 88px;
+  width: 88px;
+  position: relative;
+  top: -14px;
+}
+
+.Weather .temperatureValue {
+  font-size: 64px;
+}
+
+.Weather .temperatureUnit {
+  font-size: 22px;
+  position: relative;
+  top: -28px;
+}

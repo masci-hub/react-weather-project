@@ -1,7 +1,11 @@
 .App {
-  border: 1px solid #dadde1;
-  border-radius: 6px;
+  font-family: sans-serif;
   margin: 45px auto;
   max-width: 800px;
-  padding: 30px;
+}
+
+.App .container {
+  padding: 45px;
+  border: 1px solid #dadde1;
+  border-radius: 6px;
 }
