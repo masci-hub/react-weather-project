@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Weather from "./Weather";
+import { ClipLoader } from "react-spinners";
 
 import "./Search.css";
 
@@ -18,7 +19,6 @@ export default function Search(props) {
       iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
       temperature: response.data.temperature.current,
     });
-    console.log(response.data);
   }
 
   function searchCity() {
@@ -73,6 +73,13 @@ export default function Search(props) {
     );
   } else {
     searchCity();
-    return "Loading...";
+    return (
+      <ClipLoader
+        color="#029CFD"
+        loading={true}
+        size={150}
+        speedMultiplier={1}
+      />
+    );
   }
 }
