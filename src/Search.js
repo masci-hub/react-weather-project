@@ -5,8 +5,8 @@ import { ClipLoader } from "react-spinners";
 
 import "./Search.css";
 
-export default function Search(props) {
-  const [city, setCity] = useState(props.defaultCity);
+export default function Search() {
+  const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState("");
 
   function handleResponse(response) {
@@ -21,28 +21,26 @@ export default function Search(props) {
     });
   }
 
-  function searchCity() {
+  function searchCity(cityName) {
     const apiKey = "733615547b11515efo464ab9111t0c1b";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
-
     if (city.length > 0) {
-      searchCity();
+      searchCity(city);
     } else {
       alert(`Please enter a city`);
     }
+
+    event.preventDefault();
+
+    setCity("");
   }
 
   function updateCity(event) {
     setCity(event.target.value);
-  }
-
-  function resetCity() {
-    setCity("");
   }
 
   let form = (
@@ -53,7 +51,8 @@ export default function Search(props) {
             type="search"
             placeholder="Enter a city..."
             className="form-control"
-            onClick={resetCity}
+            value={city}
+            autoFocus="on"
             onChange={updateCity}
           ></input>
         </div>
@@ -76,14 +75,20 @@ export default function Search(props) {
       </div>
     );
   } else {
-    searchCity();
+    searchCity("New York");
     return (
       <ClipLoader
         color="#029CFD"
         loading={true}
-        size={150}
+        size={70}
         speedMultiplier={1}
+        cssOverride={override}
       />
     );
   }
 }
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+};
