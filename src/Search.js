@@ -41,6 +41,10 @@ export default function Search(props) {
     setCity(event.target.value);
   }
 
+  function resetCity() {
+    setCity("");
+  }
+
   let form = (
     <form className="mb-5" onSubmit={handleSubmit}>
       <div className="row">
@@ -49,7 +53,7 @@ export default function Search(props) {
             type="search"
             placeholder="Enter a city..."
             className="form-control"
-            autoFocus="on"
+            onClick={resetCity}
             onChange={updateCity}
           ></input>
         </div>
