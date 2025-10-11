@@ -1,4 +1,5 @@
 import React from "react";
+import FormattedDate from "./FormattedDate";
 
 import "./Weather.css";
 
@@ -10,7 +11,9 @@ export default function Weather(props) {
           <div className="col-6">
             <h1 className="mb-3 fw-bold">{props.data.city}</h1>
             <ul className="p-0 m-0">
-              <li>Last updated: {props.data.date}</li>
+              <li>
+                <FormattedDate date={props.data.date} />
+              </li>
               <li className="text-capitalize">
                 Description: {props.data.description}
               </li>
