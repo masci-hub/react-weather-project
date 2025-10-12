@@ -9,8 +9,6 @@
 }
 
 .Weather .temperatureIcon {
-  height: 88px;
-  width: 88px;
   position: relative;
   top: -14px;
 }
