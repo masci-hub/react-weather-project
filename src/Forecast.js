@@ -10,9 +10,8 @@ export default function Forecast(props) {
 
   function getForecast() {
     let apiKey = "733615547b11515efo464ab9111t0c1b";
-    let latitude = props.latitude;
-    let longitude = props.longitude;
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
+    let city = props.city;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
 
     axios.get(apiUrl).then(handleResponse);
   }
@@ -21,10 +20,10 @@ export default function Forecast(props) {
     console.log(response.data);
 
     setForecastData({
-      day: response.data.daily[1].time,
-      iconCode: response.data.daily[1].condition.icon,
-      maxTemperature: response.data.daily[1].temperature.maximum,
-      minTemperature: response.data.daily[1].temperature.minimum,
+      day: new Date(response.data.daily[0].time),
+      iconCode: response.data.daily[0].condition.icon,
+      maxTemperature: response.data.daily[0].temperature.maximum,
+      minTemperature: response.data.daily[0].temperature.minimum,
     });
   }
 

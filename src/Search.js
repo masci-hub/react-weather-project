@@ -12,21 +12,21 @@ export default function Search() {
 
   function handleResponse(response) {
     setWeatherData({
-      city: response.data.name,
-      date: new Date(response.data.dt * 1000),
-      description: response.data.weather[0].description,
-      humidity: response.data.main.humidity,
+      city: response.data.city,
+      date: new Date(response.data.time * 1000),
+      description: response.data.condition.description,
+      humidity: response.data.temperature.humidity,
       wind: response.data.wind.speed,
-      iconCode: response.data.weather[0].icon,
-      temperature: response.data.main.temp,
-      latitude: response.data.coord.lat,
-      longitude: response.data.coord.lon,
+      iconCode: response.data.condition.icon,
+      temperature: response.data.temperature.current,
+      latitude: response.data.coordinates.latitude,
+      longitude: response.data.coordinates.longitude,
     });
   }
 
   function searchCity(cityName) {
-    const apiKey = "2bd326a60dc89a53287e446e819664df";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+    const apiKey = "733615547b11515efo464ab9111t0c1b";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
@@ -75,10 +75,7 @@ export default function Search() {
       <div className="Search">
         {form}
         <Weather data={weatherData} />
-        <Forecast
-          latitude={weatherData.latitude}
-          longitude={weatherData.longitude}
-        />
+        <Forecast city={weatherData.city} />
       </div>
     );
   } else {
