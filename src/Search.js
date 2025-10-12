@@ -19,6 +19,8 @@ export default function Search() {
       wind: response.data.wind.speed,
       iconCode: response.data.weather[0].icon,
       temperature: response.data.main.temp,
+      latitude: response.data.coord.lat,
+      longitude: response.data.coord.lon,
     });
   }
 
@@ -73,7 +75,10 @@ export default function Search() {
       <div className="Search">
         {form}
         <Weather data={weatherData} />
-        <Forecast />
+        <Forecast
+          latitude={weatherData.latitude}
+          longitude={weatherData.longitude}
+        />
       </div>
     );
   } else {

@@ -1,23 +1,56 @@
-import React from "react";
-import Icon from "./Icon";
+import React, { useState } from "react";
+import axios from "axios";
+import { ClipLoader } from "react-spinners";
+import Day from "./Day";
 
 import "./Forecast.css";
 
-export default function Forecast() {
-  return (
-    <div className="Forecast">
-      <div className="row text-center mt-4 mb-4">
-        <div className="col">
-          <div className="day  opacity-75">Mon</div>
-          <div className="icon m-3">
-            <Icon code="01d" size={36} />
-          </div>
-          <div className="temperatures">
-            <strong className="minTemperature opacity-75 m-2">19°</strong>
-            <span className="maxTemperature opacity-75">10°</span>
-          </div>
-        </div>
+export default function Forecast(props) {
+  const [forecastData, setForecastData] = useState("");
+
+  function getForecast() {
+    let apiKey = "733615547b11515efo464ab9111t0c1b";
+    let latitude = props.latitude;
+    let longitude = props.longitude;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
+
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleResponse(response) {
+    console.log(response.data);
+
+    setForecastData({
+      day: response.data.daily[1].time,
+      iconCode: response.data.daily[1].condition.icon,
+      maxTemperature: response.data.daily[1].temperature.maximum,
+      minTemperature: response.data.daily[1].temperature.minimum,
+    });
+  }
+
+  if (forecastData) {
+    return (
+      <div className="Forecast">
+        <Day data={forecastData} />
       </div>
-    </div>
-  );
+    );
+  } else {
+    getForecast();
+    return (
+      <div className="Forecast">
+        <ClipLoader
+          color="#029CFD"
+          loading={true}
+          size={70}
+          speedMultiplier={1}
+          cssOverride={override}
+        />
+      </div>
+    );
+  }
 }
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+};
