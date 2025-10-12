@@ -24,7 +24,7 @@ export default function Weather(props) {
             </ul>
           </div>
           <div className="col-6 text-end">
-            <Icon code={props.data.iconCode} />
+            <Icon code={props.data.iconCode} size={52} />
             <Temperature celsius={Math.round(props.data.temperature)} />
           </div>
         </div>

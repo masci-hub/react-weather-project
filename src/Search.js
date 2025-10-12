@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Weather from "./Weather";
 import { ClipLoader } from "react-spinners";
+import Forecast from "./Forecast";
 
 import "./Search.css";
 
@@ -72,6 +73,7 @@ export default function Search() {
       <div className="Search">
         {form}
         <Weather data={weatherData} />
+        <Forecast />
       </div>
     );
   } else {
