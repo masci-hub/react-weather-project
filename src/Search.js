@@ -77,13 +77,15 @@ export default function Search() {
   } else {
     searchCity("New York");
     return (
-      <ClipLoader
-        color="#029CFD"
-        loading={true}
-        size={70}
-        speedMultiplier={1}
-        cssOverride={override}
-      />
+      <div className="Search">
+        <ClipLoader
+          color="#029CFD"
+          loading={true}
+          size={70}
+          speedMultiplier={1}
+          cssOverride={override}
+        />
+      </div>
     );
   }
 }

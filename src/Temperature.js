@@ -15,8 +15,10 @@ export default function Temperature(props) {
     setDegrees("celsius");
   }
 
-  function fahrenheit() {
-    return (props.celsius * 9) / 5 + 32;
+  function convertToFahrenheit(celsius) {
+    let fahrenheit = (celsius * 9) / 5 + 32;
+    let roundedFahrenheit = Math.round(fahrenheit);
+    return roundedFahrenheit;
   }
 
   if (degrees === "celsius") {
@@ -35,7 +37,7 @@ export default function Temperature(props) {
     return (
       <span className="Temperature">
         <strong className="temperatureValue ms-2">
-          {Math.round(fahrenheit())}
+          {convertToFahrenheit(props.celsius)}
         </strong>
         <span className="temperatureUnit ms-2">
           °F |{" "}
