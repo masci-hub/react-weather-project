@@ -8,10 +8,9 @@ import "./WeatherForecast.css";
 export default function WeatherForecast(props) {
   const [forecastData, setForecastData] = useState("");
 
-  function getForecast() {
+  function getForecastData(cityName) {
     let apiKey = "733615547b11515efo464ab9111t0c1b";
-    let city = props.data.city;
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${cityName}&key=${apiKey}&units=metric`;
 
     axios.get(apiUrl).then(handleResponse);
   }
@@ -32,7 +31,7 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    getForecast();
+    getForecastData(props.data.city);
     return (
       <div className="WeatherForecast">
         <ClipLoader
