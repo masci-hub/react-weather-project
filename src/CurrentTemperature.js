@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-import "./Temperature.css";
-
-export default function Temperature(props) {
+export default function CurrentTemperature(props) {
   const [degrees, setDegrees] = useState("celsius");
 
   function showFahrenheit(event) {
@@ -23,7 +21,7 @@ export default function Temperature(props) {
 
   if (degrees === "celsius") {
     return (
-      <span className="Temperature">
+      <span className="CurrentTemperature">
         <strong className="temperatureValue ms-2">{props.celsius}</strong>
         <span className="temperatureUnit ms-2">
           °C |{" "}
@@ -35,7 +33,7 @@ export default function Temperature(props) {
     );
   } else {
     return (
-      <span className="Temperature">
+      <span className="CurrentTemperature">
         <strong className="temperatureValue ms-2">
           {convertToFahrenheit(props.celsius)}
         </strong>

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Weather from "./Weather";
+import CurrentWeather from "./CurrentWeather";
 import { ClipLoader } from "react-spinners";
-import Forecast from "./Forecast";
-
-import "./Search.css";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Search() {
   const [city, setCity] = useState("");
@@ -19,12 +17,10 @@ export default function Search() {
       wind: response.data.wind.speed,
       iconCode: response.data.condition.icon,
       temperature: response.data.temperature.current,
-      latitude: response.data.coordinates.latitude,
-      longitude: response.data.coordinates.longitude,
     });
   }
 
-  function searchCity(cityName) {
+  function searchWeatherData(cityName) {
     const apiKey = "733615547b11515efo464ab9111t0c1b";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
@@ -32,7 +28,7 @@ export default function Search() {
 
   function handleSubmit(event) {
     if (city.length > 0) {
-      searchCity(city);
+      searchWeatherData(city);
     } else {
       alert(`Please enter a city`);
     }
@@ -42,7 +38,7 @@ export default function Search() {
     setCity("");
   }
 
-  function updateCity(event) {
+  function getCity(event) {
     setCity(event.target.value);
   }
 
@@ -56,7 +52,7 @@ export default function Search() {
             className="form-control"
             value={city}
             autoFocus="on"
-            onChange={updateCity}
+            onChange={getCity}
           ></input>
         </div>
         <div className="col-3">
@@ -74,12 +70,12 @@ export default function Search() {
     return (
       <div className="Search">
         {form}
-        <Weather data={weatherData} />
-        <Forecast city={weatherData.city} />
+        <CurrentWeather data={weatherData} />
+        <WeatherForecast data={weatherData} />
       </div>
     );
   } else {
-    searchCity("New York");
+    searchWeatherData("New York");
     return (
       <div className="Search">
         <ClipLoader

@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import Day from "./Day";
+import ForecastDay from "./ForecastDay";
 
-import "./Forecast.css";
+import "./WeatherForecast.css";
 
-export default function Forecast(props) {
+export default function WeatherForecast(props) {
   const [forecastData, setForecastData] = useState("");
 
   function getForecast() {
     let apiKey = "733615547b11515efo464ab9111t0c1b";
-    let city = props.city;
+    let city = props.data.city;
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
 
     axios.get(apiUrl).then(handleResponse);
   }
 
   function handleResponse(response) {
-    console.log(response.data);
-
     setForecastData({
       day: new Date(response.data.daily[0].time),
       iconCode: response.data.daily[0].condition.icon,
@@ -29,14 +27,14 @@ export default function Forecast(props) {
 
   if (forecastData) {
     return (
-      <div className="Forecast">
-        <Day data={forecastData} />
+      <div className="WeatherForecast">
+        <ForecastDay data={forecastData} />
       </div>
     );
   } else {
     getForecast();
     return (
-      <div className="Forecast">
+      <div className="WeatherForecast">
         <ClipLoader
           color="#029CFD"
           loading={true}
