@@ -1,0 +1,9 @@
+.CurrentTemperature .temperatureValue {
+  font-size: 64px;
+}
+
+.CurrentTemperature .temperatureUnit {
+  font-size: 22px;
+  position: relative;
+  top: -28px;
+}

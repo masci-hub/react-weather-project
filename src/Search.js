@@ -71,7 +71,7 @@ export default function Search() {
       <div className="Search">
         {form}
         <CurrentWeather data={weatherData} />
-        <WeatherForecast data={weatherData} />
+        <WeatherForecast city={weatherData.city} />
       </div>
     );
   } else {

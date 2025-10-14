@@ -30,7 +30,6 @@ export default function Icon(props) {
         color="black"
         size={props.size}
         animate={true}
-        className="temperatureIcon"
       />
     </span>
   );
