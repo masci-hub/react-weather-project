@@ -33,8 +33,8 @@ export default function ForecastDay(props) {
             <Icon code={props.data.condition.icon} size={36} />
           </div>
           <div>
-            <strong className="opacity-75 m-2">{maxTemp()}°C</strong>
-            <span className="opacity-75">{minTemp()}°C</span>
+            <strong className="opacity-75 m-2">{maxTemp()}°</strong>
+            <span className="opacity-75">{minTemp()}°</span>
           </div>
         </div>
       </div>
