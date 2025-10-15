@@ -3,16 +3,16 @@ import React, { useState } from "react";
 import "./CurrentTemperature.css";
 
 export default function CurrentTemperature(props) {
-  const [degrees, setDegrees] = useState("celsius");
+  const [units, setUnits] = useState("metric");
 
   function showFahrenheit(event) {
     event.preventDefault();
-    setDegrees("fahrenheit");
+    setUnits("imperial");
   }
 
   function showCelsius(event) {
     event.preventDefault();
-    setDegrees("celsius");
+    setUnits("metric");
   }
 
   function convertToFahrenheit(celsius) {
@@ -21,7 +21,7 @@ export default function CurrentTemperature(props) {
     return roundedFahrenheit;
   }
 
-  if (degrees === "celsius") {
+  if (units === "metric") {
     return (
       <span className="CurrentTemperature">
         <strong className="temperatureValue ms-2">{props.celsius}</strong>
