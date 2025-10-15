@@ -21,8 +21,7 @@ export default function ForecastDay({ data, units }) {
     let roundedMaxTemp = Math.round(maxTemp);
 
     if (units === "imperial") {
-      convertToFahrenheit(maxTemp);
-      return null;
+      return convertToFahrenheit(maxTemp);
     } else {
       return roundedMaxTemp;
     }
@@ -33,8 +32,7 @@ export default function ForecastDay({ data, units }) {
     let roundedMinTemp = Math.round(minTemp);
 
     if (units === "imperial") {
-      convertToFahrenheit(minTemp);
-      return null;
+      return convertToFahrenheit(minTemp);
     } else {
       return roundedMinTemp;
     }
