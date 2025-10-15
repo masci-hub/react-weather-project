@@ -2,9 +2,7 @@ import React, { useState } from "react";
 
 import "./CurrentTemperature.css";
 
-export default function CurrentTemperature(props) {
-  const [units, setUnits] = useState("metric");
-
+export default function CurrentTemperature({ celsius, units, setUnits }) {
   function showFahrenheit(event) {
     event.preventDefault();
     setUnits("imperial");
@@ -24,7 +22,7 @@ export default function CurrentTemperature(props) {
   if (units === "metric") {
     return (
       <span className="CurrentTemperature">
-        <strong className="temperatureValue ms-2">{props.celsius}</strong>
+        <strong className="temperatureValue ms-2">{celsius}</strong>
         <span className="temperatureUnit ms-2">
           °C |{" "}
           <a href="/" className="text-decoration-none" onClick={showFahrenheit}>
@@ -37,7 +35,7 @@ export default function CurrentTemperature(props) {
     return (
       <span className="CurrentTemperature">
         <strong className="temperatureValue ms-2">
-          {convertToFahrenheit(props.celsius)}
+          {convertToFahrenheit(celsius)}
         </strong>
         <span className="temperatureUnit ms-2">
           °F |{" "}

@@ -1,9 +1,9 @@
 import React from "react";
 import Icon from "./Icon";
 
-export default function ForecastDay(props) {
+export default function ForecastDay({ data, units }) {
   function day() {
-    let date = new Date(props.data.time * 1000);
+    let date = new Date(data.time * 1000);
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     let formattedDay = days[date.getDay()];
 
@@ -11,17 +11,27 @@ export default function ForecastDay(props) {
   }
 
   function maxTemp() {
-    let maxTemp = props.data.temperature.maximum;
+    let maxTemp = data.temperature.maximum;
     let roundedMaxTemp = Math.round(maxTemp);
 
-    return roundedMaxTemp;
+    if (units === "imperial") {
+      let fahren = Math.round((maxTemp * 9) / 5 + 32);
+      return fahren;
+    } else {
+      return roundedMaxTemp;
+    }
   }
 
   function minTemp() {
-    let minTemp = props.data.temperature.minimum;
+    let minTemp = data.temperature.minimum;
     let roundedMinTemp = Math.round(minTemp);
 
-    return roundedMinTemp;
+    if (units === "imperial") {
+      let fahren = Math.round((minTemp * 9) / 5 + 32);
+      return fahren;
+    } else {
+      return roundedMinTemp;
+    }
   }
 
   return (
@@ -30,10 +40,10 @@ export default function ForecastDay(props) {
         <div className="col">
           <div className="opacity-75">{day()}</div>
           <div className="m-3">
-            <Icon code={props.data.condition.icon} size={36} />
+            <Icon code={data.condition.icon} size={36} />
           </div>
           <div>
-            <strong className="opacity-75 m-2">{maxTemp()}°</strong>
+            <span className="opacity-75 m-2">{maxTemp()}°</span>
             <span className="opacity-75">{minTemp()}°</span>
           </div>
         </div>

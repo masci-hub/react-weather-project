@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import CurrentWeather from "./CurrentWeather";
 import { ClipLoader } from "react-spinners";
 import WeatherForecast from "./WeatherForecast";
+import FormattedDate from "./FormattedDate";
+import CurrentTemperature from "./CurrentTemperature";
+import Icon from "./Icon";
 
 export default function Search() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState("");
+  const [units, setUnits] = useState("metric");
 
   function handleResponse(response) {
     setWeatherData({
@@ -70,8 +73,32 @@ export default function Search() {
     return (
       <div className="Search">
         {form}
-        <CurrentWeather data={weatherData} />
-        <WeatherForecast city={weatherData.city} />
+        <div className="weatherData mt-3 mb-3">
+          <div className="row">
+            <div className="col-6">
+              <h1 className="mb-3 fw-bold">{weatherData.city}</h1>
+              <ul className="p-0 m-0">
+                <li>
+                  <FormattedDate date={weatherData.date} />
+                </li>
+                <li className="text-capitalize">
+                  Description: {weatherData.description}
+                </li>
+                <li>Humidity: {Math.round(weatherData.humidity)}%</li>
+                <li>Wind: {Math.round(weatherData.wind)}km/h</li>
+              </ul>
+            </div>
+            <div className="col-6 text-end">
+              <Icon code={weatherData.iconCode} size={52} />
+              <CurrentTemperature
+                celsius={Math.round(weatherData.temperature)}
+                units={units}
+                setUnits={setUnits}
+              />
+            </div>
+          </div>
+        </div>
+        <WeatherForecast city={weatherData.city} units={units} />
       </div>
     );
   } else {
