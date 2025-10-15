@@ -1,9 +1,9 @@
-.CurrentWeather .weatherData {
+.WeatherSearch .currentWeather {
   border-top: 1px solid #dadde1;
   border-bottom: 1px solid #dadde1;
   padding: 60px 0;
 }
 
-.CurrentWeather ul {
+.WeatherSearch ul {
   list-style: none;
 }

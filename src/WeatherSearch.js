@@ -6,7 +6,9 @@ import FormattedDate from "./FormattedDate";
 import CurrentTemperature from "./CurrentTemperature";
 import Icon from "./Icon";
 
-export default function Search() {
+import "./WeatherSearch.css";
+
+export default function WeatherSearch() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState("");
   const [units, setUnits] = useState("metric");
@@ -45,7 +47,7 @@ export default function Search() {
     setCity(event.target.value);
   }
 
-  let form = (
+  let searchForm = (
     <form className="mb-5" onSubmit={handleSubmit}>
       <div className="row">
         <div className="col-9">
@@ -71,9 +73,9 @@ export default function Search() {
 
   if (weatherData) {
     return (
-      <div className="Search">
-        {form}
-        <div className="weatherData mt-3 mb-3">
+      <div className="WeatherSearch">
+        {searchForm}
+        <div className="currentWeather mt-3 mb-3">
           <div className="row">
             <div className="col-6">
               <h1 className="mb-3 fw-bold">{weatherData.city}</h1>
@@ -104,7 +106,7 @@ export default function Search() {
   } else {
     searchWeatherData("New York");
     return (
-      <div className="Search">
+      <div className="WeatherSearch">
         <ClipLoader
           color="#029CFD"
           loading={true}
