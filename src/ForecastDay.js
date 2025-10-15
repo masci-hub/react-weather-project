@@ -10,13 +10,19 @@ export default function ForecastDay({ data, units }) {
     return formattedDay;
   }
 
+  function convertToFahrenheit(celsius) {
+    let fahrenheit = (celsius * 9) / 5 + 32;
+    let roundedFahrenheit = Math.round(fahrenheit);
+    return roundedFahrenheit;
+  }
+
   function maxTemp() {
     let maxTemp = data.temperature.maximum;
     let roundedMaxTemp = Math.round(maxTemp);
 
     if (units === "imperial") {
-      let fahren = Math.round((maxTemp * 9) / 5 + 32);
-      return fahren;
+      convertToFahrenheit(maxTemp);
+      return null;
     } else {
       return roundedMaxTemp;
     }
@@ -27,8 +33,8 @@ export default function ForecastDay({ data, units }) {
     let roundedMinTemp = Math.round(minTemp);
 
     if (units === "imperial") {
-      let fahren = Math.round((minTemp * 9) / 5 + 32);
-      return fahren;
+      convertToFahrenheit(minTemp);
+      return null;
     } else {
       return roundedMinTemp;
     }
