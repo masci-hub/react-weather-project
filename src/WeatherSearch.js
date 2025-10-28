@@ -50,21 +50,21 @@ export default function WeatherSearch() {
   let searchForm = (
     <form className="mb-5" onSubmit={handleSubmit}>
       <div className="row">
-        <div className="col-9">
+        <div className="col-8">
           <input
             type="search"
             placeholder="Enter a city..."
-            className="form-control"
+            className="searchBar form-control"
             value={city}
             autoFocus="on"
             onChange={getCity}
           ></input>
         </div>
-        <div className="col-3">
+        <div className="col-4">
           <input
             type="submit"
             value="Search"
-            className="btn btn-primary w-100"
+            className="searchButton btn btn-primary w-100"
           ></input>
         </div>
       </div>

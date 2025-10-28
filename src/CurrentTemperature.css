@@ -7,3 +7,13 @@
   position: relative;
   top: -28px;
 }
+
+@media (max-width: 576px) {
+  .CurrentTemperature .temperatureValue {
+    font-size: 48px;
+  }
+  .CurrentTemperature .temperatureUnit {
+    font-size: 18px;
+    top: -22px;
+  }
+}
