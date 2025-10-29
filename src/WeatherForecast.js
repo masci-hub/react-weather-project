@@ -3,14 +3,16 @@ import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import ForecastDay from "./ForecastDay";
 
-import "./WeatherForecast.css";
-
 export default function WeatherForecast(props) {
   const [forecastData, setForecastData] = useState("");
 
   useEffect(() => {
     setForecastData("");
   }, [props.city]);
+
+  function handleResponse(response) {
+    setForecastData(response.data.daily);
+  }
 
   function getForecastData(cityName) {
     const apiKey = "733615547b11515efo464ab9111t0c1b";
@@ -20,26 +22,24 @@ export default function WeatherForecast(props) {
     axios.get(apiUrl).then(handleResponse);
   }
 
-  function handleResponse(response) {
-    setForecastData(response.data.daily);
-  }
-
   if (forecastData) {
     return (
       <div className="WeatherForecast">
-        <div className="row">
-          {forecastData.map(function (dailyForecastData, index) {
-            if (index > 0 && index < 7) {
-              return (
-                <div className="col" key={index}>
-                  <ForecastDay data={dailyForecastData} units={props.units} />
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
+        <section className="pt-3">
+          <div className="row">
+            {forecastData.map(function (dailyForecastData, index) {
+              if (index > 0 && index < 7) {
+                return (
+                  <div className="col" key={index}>
+                    <ForecastDay data={dailyForecastData} units={props.units} />
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+        </section>
       </div>
     );
   } else {
